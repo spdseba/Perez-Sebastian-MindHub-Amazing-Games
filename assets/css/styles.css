@@ -7,28 +7,40 @@
 .main{
     min-height: 75vh;
 }
+
+/*** Footer ***/
 footer{
     min-height: 10vh;
     background-color: rgb(17, 18, 18);
     color: #fff;
+    border-top: 5px solid #f099c2;
 }
 footer .row{
     height: 100%!important;
+    min-height: 10rem;
 }
 footer a{
     color: #fff;
 }
 footer .bi {
     font-size: 1.5em;
-  }
+}
+footer a i:hover{
+    color: #f099c2;
+}
+footer.row h2{
+    width: 100%;
+    height: 3rem;
+    text-align: center;
+    line-height: 3rem;
+}
+/*** End Footer ***/
+
 .nav-link.active, .nav-link:hover{
     background-color: #f099c2;
     color: #fff !important;
 }
-.carrousel{
-    height: 400px;
-    overflow: hidden;
-}
+
 #search-button{
     background-color: #f099c2;
 }
@@ -40,14 +52,21 @@ footer .bi {
 .container-fluid.carrousel{
     padding: 0;
 }
+/*** Card ***/
 .card{
     width: 350px;
     height: 350px;
+}
+.card .card-body h5{
+    height: 2rem;
+    line-height: 1.8rem;
 }
 .card-image{
     height: 150px;
     overflow: hidden;
 }
+/*** End Card ***/
+
 .section-title{
     position: absolute;
     display: flex;
@@ -55,32 +74,20 @@ footer .bi {
     align-items: center;
     top: 0;
     left: 0;
-    background-color: rgba(10, 10, 10, 0.2);
+    background-color: rgba(10, 10, 10, 0.6);
     height: 100px;
     width: 100%;
     z-index: 10000;
     text-align: center;
     color: #f099c2;
 }
-footer{
-    border-top: 5px solid #f099c2;
-}
-footer.row{
-
-    min-height: 10rem;
-}
-footer a i:hover{
-    color: #f099c2;
-}
-footer.row h2{
-    width: 100%;
-    height: 3rem;
-    text-align: center;
-    line-height: 3rem;
-}
 .btn{
     background-color: #f099c2;
     color: #fff;
+}
+.btn:hover{
+    background-color: #000;
+    color: #f099c2;
 }
 .navbar.navbar-expand-lg.search{
     padding: 0;
@@ -149,6 +156,7 @@ header{
     justify-content: center;
     align-items: center;
 }
+
 table thead tr:first-child{
     background-color: #000;
     color: #f099c2; 
@@ -156,4 +164,26 @@ table thead tr:first-child{
 table tr:hover{
     background-color: #000;
     color: #f099c2;
+}
+.img-mobile{
+    display: none;
+}
+
+@media screen and (max-width:980px){
+    .img-mobile{
+        display: block;
+    }
+    #carouselExampleIndicators{
+        display: none;
+    }
+    .navbar.navbar-expand-lg.search{
+        display: none;
+    }
+
+}
+
+@media screen and (min-width:980px) and (max-width:1200px){
+    .card{
+        width: 300px;
+    }
 }
