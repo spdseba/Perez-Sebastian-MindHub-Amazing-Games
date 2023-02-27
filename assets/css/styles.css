@@ -65,6 +65,9 @@ footer.row h2{
     height: 150px;
     overflow: hidden;
 }
+.card-footer{
+    height: 4rem;
+}
 /*** End Card ***/
 
 .section-title{
@@ -95,6 +98,16 @@ footer.row h2{
     height: 5rem;
     background-color: rgba(10, 10, 10, 0.8);
     border-top: 2px solid #f099c2;
+}
+.navbar.navbar-expand-lg.search .category-and-search{
+    display: flex;
+    flex-wrap: wrap;
+}
+.navbar.navbar-expand-lg.search .category-and-search .category-check{
+    width: 500px;
+}
+.navbar.navbar-expand-lg.search .category-and-search .input-group{
+    width: 500px;
 }
 .category-and-search{
     width: 100%;
@@ -156,10 +169,12 @@ header{
     justify-content: center;
     align-items: center;
 }
-
-table thead tr:first-child{
-    background-color: #000;
-    color: #f099c2; 
+h2.table-title{
+    font-size: 1.5rem;
+    background-color: #181818;
+    color: #f099c2;
+    line-height: 3rem;
+    text-indent: 5px;
 }
 table tr:hover{
     background-color: #000;
@@ -169,7 +184,7 @@ table tr:hover{
     display: none;
 }
 
-@media screen and (max-width:980px){
+@media screen and (max-width:1100px){
     .img-mobile{
         display: block;
     }
@@ -177,7 +192,30 @@ table tr:hover{
         display: none;
     }
     .navbar.navbar-expand-lg.search{
-        display: none;
+        height: 100px;
+    }
+    .navbar.navbar-expand-lg.search .category-and-search .category-check{
+        width: 100%;
+        flex-wrap: nowrap;
+        text-align: center;
+    }
+    .navbar.navbar-expand-lg.search .category-and-search .category-check ul li{
+        width: 30%;
+        display: inline-block;
+    }
+    .navbar.navbar-expand-lg.search .category-and-search .input-group{
+        width: 50%;
+    }
+    .individual-card{
+        flex-direction: column;
+        align-items: center;
+    }
+    .container-xxl.individual .row .card-image-left{
+        width: 85%;
+    
+    }
+    .container-xxl.individual .row .card-body-right{
+        width: 85%;
     }
 
 }
