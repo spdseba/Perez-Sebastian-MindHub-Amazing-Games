@@ -184,7 +184,7 @@ table tr:hover{
     display: none;
 }
 
-@media screen and (max-width:980px){
+@media screen and (max-width:1100px){
     .img-mobile{
         display: block;
     }
@@ -192,7 +192,7 @@ table tr:hover{
         display: none;
     }
     .navbar.navbar-expand-lg.search{
-        height: 200px;
+        height: 100px;
     }
     .navbar.navbar-expand-lg.search .category-and-search .category-check{
         width: 100%;
