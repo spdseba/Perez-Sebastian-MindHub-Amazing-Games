@@ -1,6 +1,5 @@
 //Guardo en una constante el valor de la URI
 const queryString = location.search;
-
 //Creo un objeto URLSearchParams con la URL obtenida y obtengo el id
 const params = new URLSearchParams(queryString);
 const id = params.get("id");
