@@ -136,6 +136,9 @@ header{
     position: sticky;
     top: 0;
 }
+.table th{
+    width: 33%;
+}
 #spinner:not([hidden]) {
     position: fixed;
     top: 0;
