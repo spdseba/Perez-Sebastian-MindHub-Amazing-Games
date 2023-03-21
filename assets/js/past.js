@@ -21,7 +21,7 @@ async function getDataFromApi() {
     const data = await response.json();
     let events = data.events;
     pastEvents = events.filter(evt => evt.date < data.currentDate);
-    renderCategories(pastEvents);
+    renderCategories(events);
     renderCards(pastEvents);
     //Agrego Listeners a los input checkbox
     let categoryCheckboxes = document.querySelectorAll("input[type=checkbox]");
@@ -29,12 +29,12 @@ async function getDataFromApi() {
     {
       //Convierto la NodeList en un array
       checkedInput = Array.from(categoryCheckboxes).filter(checkbox => checkbox.checked).map( ele => ele.value);
-      renderCards(filterByAll(events, checkedInput));
+      renderCards(filterByAll(pastEvents, checkedInput));
     }
     ));
     //Agrego el listener al input search
     inputSearch.addEventListener("keyup", () => {
-      renderCards(filterByAll(events, checkedInput));
+      renderCards(filterByAll(pastEvents, checkedInput));
     });
 
   }

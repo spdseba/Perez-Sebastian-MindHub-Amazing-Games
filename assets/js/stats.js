@@ -85,7 +85,7 @@ function renderTableUpEvtByCategory(categories){
       `<tr>
         <td>${keysCat[i]}</td>
         <td>$ ${categories[keysCat[i]].revenue}</td>
-        <td>${((categories[keysCat[i]].estimate * 100) / categories[keysCat[i]].capacity).toFixed(2) } %</td>
+        <td>${((categories[keysCat[i]].attendance * 100) / categories[keysCat[i]].count).toFixed(2)} %</td>
       </tr>`
     }
   }
@@ -116,7 +116,9 @@ function generateCategoryObject(data){
         "revenue" : 0,
         "estimate" : 0,
         "capacity" : 0,
-        "assistance" : 0
+        "assistance" : 0,
+        "attendance" : 0,
+        "count": 0
        }
     }
   }
@@ -124,17 +126,22 @@ function generateCategoryObject(data){
 }
 //Función que obtiene los eventos por venir con sus datos para luego llamar a la función que los muestra en una tabla
 function upcomingEvt_by_category(data){
+  upcomingEvents = data.events.filter(evt => evt.date >= data.currentDate);
   let categoriesData = generateCategoryObject(data);
   currentDate = data.currentDate;
   //let currentDate = new Date(data.currentDate);
-  for(let evt of data.events){
+  
+  for(let evt of upcomingEvents){
     if(evt.date > currentDate){
-      categoriesData[evt.category].revenue += parseInt(evt.estimate) * parseInt(evt.price)
-      categoriesData[evt.category].estimate += parseInt(evt.estimate)
-      categoriesData[evt.category].capacity += parseInt(evt.capacity)
+      categoriesData[evt.category].revenue += evt.estimate * evt.price
+      categoriesData[evt.category].estimate += evt.estimate
+      categoriesData[evt.category].capacity += evt.capacity
+      categoriesData[evt.category].attendance += (evt.estimate / evt.capacity);
+      categoriesData[evt.category].count += 1;
     }
 
   }
+  console.log(categoriesData)
   renderTableUpEvtByCategory(categoriesData);
 
 }
@@ -150,7 +157,7 @@ function renderTablePastEvtByCategory(categories){
       `<tr>
         <td>${keysCat[i]}</td>
         <td>$ ${categories[keysCat[i]].revenue}</td>
-        <td>${(((categories[keysCat[i]].assistance / categories[keysCat[i]].capacity * 100) )).toFixed(2) } %</td>
+        <td>${((categories[keysCat[i]].attendance * 100) / categories[keysCat[i]].count).toFixed(2)} %</td>
       </tr>`
     }
   }
@@ -182,10 +189,36 @@ function pastEvt_by_category(data){
         categoriesData[evt.category].revenue += parseInt(evt.assistance) * parseInt(evt.price);
         categoriesData[evt.category].assistance += parseInt(evt.assistance);
         categoriesData[evt.category].capacity += parseInt(evt.capacity);
+        categoriesData[evt.category].attendance += (evt.assistance / evt.capacity);
+        categoriesData[evt.category].count += 1;
     }
   }
   renderTablePastEvtByCategory(categoriesData);
 }
+
+
+
 //Funcion que obtiene los eventos de la API y los muestra en tablas en pantalla
 getDataFromApi(urlAPI);
+/*
 
+let porcentajeTotal = arrayFiltrado.reduce((total, evento) => {
+  evento.assistance == undefined ? total += evento.estimate / evento.capacity : total += evento.assistance / evento.capacity
+  return total
+}, 0)
+return (porcentajeTotal * 100 / arrayFiltrado.length).toFixed(2);
+
+
+eventos.filter(eventos => eventos.assistance)
+
+
+function calcularAsistencia (array,nombrecategoria){
+
+  let arrayFiltrado = array.filter(elemento => elemento.category == nombrecategoria).reduce((total,evento) =>{
+      if(evento.assistance != undefined) return total += evento.assistance / evento.capacity 
+      return total += evento.estimate / evento.capacity
+  },0)
+  return (arrayFiltrado * 100 /array.filter(elemento => elemento.category == nombrecategoria).length).toFixed(2)
+}
+
+*/
